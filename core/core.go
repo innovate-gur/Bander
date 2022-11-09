@@ -1,24 +1,30 @@
 package core
 
 import (
+	"fmt"
+
 	"github.com/Noreen-py/Bander/interpreter/token"
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 type Core struct {
-	ballPosition rl.Vector2
-	lexed        []token.Token //change to parsed
+	lexed []token.Token //change to parsed
 }
 
 func (c *Core) Window() {
-	rl.InitWindow(800, 450, "raylib [core] example - basic window")
+	fmt.Println(c.lexed)
+	screenWidth := 512
+	screenHeight := 400
+	rl.InitWindow(int32(screenWidth), int32(screenHeight), "Bandel")
 	rl.SetTargetFPS(60)
+	ballPosition := rl.NewVector2(float32(800)/2, float32(450)/2)
 
 	for !rl.WindowShouldClose() {
+
 		rl.BeginDrawing()
-		c.ballPosition = rl.NewVector2(float32(800)/2, float32(450)/2)
+
 		rl.ClearBackground(rl.RayWhite)
-		rl.DrawCircleV(c.ballPosition, 50, rl.Maroon)
+		rl.DrawCircleV(ballPosition, 50, rl.Maroon)
 		rl.EndDrawing()
 	}
 
